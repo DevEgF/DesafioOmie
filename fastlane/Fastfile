@@ -1,0 +1,15 @@
+default_platform(:android)
+
+platform :android do
+  desc "Auto-fix Android Lint issues and run Detekt static analysis"
+  lane :quality do
+    gradle(task: "lintFix")
+    gradle(task: "detekt")
+  end
+
+  desc "Run unit tests and verify JaCoco coverage >= 85%"
+  lane :test_coverage do
+    gradle(task: "test")
+    gradle(task: "jacocoCoverageVerification")
+  end
+end

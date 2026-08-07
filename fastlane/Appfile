@@ -1,0 +1,3 @@
+# No Play Console credentials are configured: the lanes in this project only
+# run local Gradle quality/coverage tasks and never publish to a store.
+package_name("com.omie.desafio") # used only as metadata, not for uploads

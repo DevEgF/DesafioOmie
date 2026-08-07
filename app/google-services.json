@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96568490532",
+    "project_id": "desafio-omie-cebf0",
+    "storage_bucket": "desafio-omie-cebf0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96568490532:android:6566e361cb23ced520f6b1",
+        "android_client_info": {
+          "package_name": "com.omie.desafio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEUiSWT3V6koim0SSEuDT_rVqrQ-DLeJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

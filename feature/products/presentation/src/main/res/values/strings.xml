@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="products_title">Produtos</string>
+    <string name="product_back">Voltar</string>
+    <string name="product_new">Novo produto</string>
+    <string name="product_edit">Editar</string>
+    <string name="product_delete">Excluir</string>
+    <string name="product_form_title">Produto</string>
+    <string name="product_name_label">Nome do produto</string>
+    <string name="product_description_label">Descrição do produto</string>
+    <string name="product_unit_price_label">Valor unitário</string>
+    <string name="product_save">Salvar</string>
+
+    <string name="product_error_blank_name">Nome do produto não pode ser vazio</string>
+    <string name="product_error_blank_description">Descrição do produto não pode ser vazia</string>
+    <string name="product_error_invalid_unit_price">Valor unitário inválido</string>
+    <string name="product_error_generic">Não foi possível salvar o produto</string>
+</resources>

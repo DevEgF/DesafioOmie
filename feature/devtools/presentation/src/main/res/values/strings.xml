@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="developer_mode_title">Developer Mode</string>
+    <string name="developer_mode_crash_count">Crashes registrados: %1$d</string>
+    <string name="developer_mode_memory_usage">Memória usada pelo app: %1$d MB</string>
+    <string name="developer_mode_storage_usage">Espaço em disco usado: %1$d MB</string>
+    <string name="developer_mode_sale_detail_toggle">Habilitar tela de detalhe da venda</string>
+    <string name="developer_mode_source_override">Usando override local (ignora o Firebase)</string>
+    <string name="developer_mode_source_remote">Usando valor remoto (Firebase Remote Config)</string>
+    <string name="developer_mode_reset_override">Resetar para o valor remoto</string>
+</resources>

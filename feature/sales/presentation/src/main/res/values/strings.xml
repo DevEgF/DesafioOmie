@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Vendas</string>
+    <string name="home_products_action">Produtos</string>
+    <string name="home_developer_mode_action">Developer Mode</string>
+    <string name="home_new_sale">Fazer uma venda</string>
+    <string name="home_total_sales">Total de vendas: %1$s</string>
+
+    <string name="new_sale_title">Fazer uma venda</string>
+    <string name="new_sale_client_label">Cliente</string>
+    <string name="new_sale_product_section">Produto</string>
+    <string name="new_sale_product_name_label">Nome do produto</string>
+    <string name="new_sale_quantity_label">Quantidade</string>
+    <string name="new_sale_unit_price_label">Valor unitário</string>
+    <string name="new_sale_include">Incluir</string>
+    <string name="new_sale_cancel">Cancelar</string>
+    <string name="new_sale_save">Salvar</string>
+    <string name="new_sale_remove_item">x</string>
+    <string name="new_sale_totals">Qtd. total de itens: %1$d    Valor total do pedido: %2$s</string>
+
+    <string name="new_sale_column_name">Nome</string>
+    <string name="new_sale_column_quantity">Quantidade</string>
+    <string name="new_sale_column_unit_price">Valor Unitário</string>
+    <string name="new_sale_column_total">Valor Total</string>
+
+    <string name="new_sale_error_no_product_selected">Selecione um produto</string>
+    <string name="new_sale_error_invalid_quantity">Quantidade inválida</string>
+    <string name="new_sale_error_invalid_unit_price">Valor unitário inválido</string>
+    <string name="new_sale_error_blank_client_name">Nome do cliente não pode ser vazio</string>
+    <string name="new_sale_error_no_items">Adicione ao menos um item ao pedido</string>
+    <string name="new_sale_error_generic">Não foi possível salvar a venda</string>
+
+    <string name="sale_detail_title">Detalhes da venda</string>
+    <string name="sale_detail_client_label">Cliente</string>
+    <string name="sale_detail_column_name">Nome</string>
+    <string name="sale_detail_column_quantity">Quantidade</string>
+    <string name="sale_detail_column_unit_price">Valor Unitário</string>
+    <string name="sale_detail_column_total">Valor Total</string>
+    <string name="sale_detail_totals">Qtd. total de itens: %1$d    Valor total do pedido: %2$s</string>
+    <string name="sale_detail_not_found">Venda não encontrada</string>
+</resources>
