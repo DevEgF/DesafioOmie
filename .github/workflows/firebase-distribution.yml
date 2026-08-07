@@ -48,6 +48,6 @@ jobs:
         with:
           appId: ${{ secrets.FIREBASE_APP_ID }}
           serviceCredentialsFileContent: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-          groups: testers
+          testers: egitofilho4@gmail.com
           file: app/build/outputs/apk/debug/app-debug.apk
           releaseNotes: ${{ github.event.inputs.release_notes || format('Commit {0}', github.sha) }}
