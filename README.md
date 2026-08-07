@@ -123,9 +123,9 @@ override local existe nesse aparelho?
 
 **Por quê**: o Remote Config real depende de rede e de propagação (pode levar minutos, e no pipeline de CI o `google-services.json` de teste nem aponta pra um projeto real). O override dá controle imediato e determinístico pra QA testar os dois estados da flag num aparelho específico, sem afetar outros usuários nem depender do Console. A tela deixa explícito qual dos dois valores está em vigor, pra não gerar confusão tipo "mudei no Firebase e não mudou nada" (quando na real era um override esquecido ligado).
 
-### 5. `google-services.json` versionado como placeholder
+### 5. `google-services.json` versionado com as credenciais reais
 
-O plugin `google-services` **quebra o build** se o arquivo não existir, então em vez de excluí-lo do controle de versão (o que quebraria qualquer clone novo do repo), existe um placeholder sintaticamente válido versionado (`project_id: omie-desafio-placeholder`, chaves falsas). O app builda e roda normalmente com ele — só as chamadas reais ao Firebase não vão a lugar nenhum. O arquivo real (com credenciais de verdade) nunca é commitado; no CI ele é gerado a partir de um GitHub Secret em base64 (ver seção de CI/CD).
+O plugin `google-services` **quebra o build** se o arquivo não existir, então ele está versionado no repositório apontando pro projeto Firebase real (`desafio-omie-cebf0`). Isso significa que qualquer clone do repo builda e já se conecta ao Firebase de verdade, sem passo extra de configuração. A API key exposta aqui é a chave pública de app Android (não é um segredo de servidor — o modelo de segurança do Firebase para apps mobile depende das regras do backend, não do sigilo dessa chave), mas o arquivo ainda assim carrega o `project_id` e o `mobilesdk_app_id` reais do projeto.
 
 ### 6. TDD nos ViewModels e nas classes com lógica não-trivial
 
@@ -142,16 +142,7 @@ Toda mudança de comportamento (contador de crash, gate do Remote Config, evento
 - Android Studio compatível com a AGP declarada em `gradle/libs.versions.toml`
 - JDK 17 (Gradle 9.x exige)
 
-### 1. Configurar o Firebase
-
-O repositório já vem com um `app/google-services.json` placeholder — o app builda sem ele precisar ser trocado. Para usar Firebase de verdade:
-
-1. Crie (ou abra) um projeto no [Firebase Console](https://console.firebase.google.com/).
-2. Adicione um app Android com `applicationId = com.omie.desafio`.
-3. Baixe o `google-services.json` gerado e substitua o arquivo em `app/google-services.json` (mesmo nome, mesmo caminho).
-4. (Opcional, para o Remote Config funcionar de fato) crie o parâmetro `sale_detail_enabled` (tipo Boolean) em Remote Config → Publicar.
-
-### 2. Build e instalação
+### 1. Build e instalação
 
 ```bash
 ./gradlew build                    # build completo de todos os módulos
@@ -161,7 +152,7 @@ O repositório já vem com um `app/google-services.json` placeholder — o app b
 
 Ou abra o projeto direto no Android Studio e rode a configuração `app`.
 
-### 3. Acessando o Developer Mode
+### 2. Acessando o Developer Mode
 
 Abra o app → toque no ícone de bug (🐛) na barra superior da tela inicial. Não depende de sensor nem gesto de shake — é um botão direto, acessível em qualquer build (debug ou release).
 
@@ -180,18 +171,19 @@ O relatório HTML de cobertura fica em `build/reports/jacoco/aggregated/html/ind
 Dois workflows em `.github/workflows/`:
 
 ### `ci.yml` — gate de qualidade
-Roda em todo `push` (qualquer branch) e em `pull_request` para `main`. Dois jobs em paralelo, sem depender de nenhum secret (gera um `google-services.json` placeholder próprio se não existir):
+Roda em todo `push` (qualquer branch) e em `pull_request` para `main`. Dois jobs em paralelo:
 - **test**: `./gradlew test` + `./gradlew jacocoCoverageVerification`, sobe os relatórios como artifacts.
 - **detekt**: `./gradlew detekt`, sobe o relatório como artifact.
 
 ### `firebase-distribution.yml` — distribuição
 Dispara em push para `main` ou manualmente (aba Actions → Run workflow). Builda a APK debug (já assinada com o keystore de debug automático — sem precisar gerenciar keystore de release em CI), roda `test` + `detekt` de novo como segunda camada de segurança, e sobe pro Firebase App Distribution.
 
+Como o `app/google-services.json` real já está versionado no repositório, nenhum dos dois workflows precisa gerar ou decodificar esse arquivo — o `actions/checkout` já traz a versão certa.
+
 **Secrets necessários** (Settings → Secrets and variables → Actions):
 
 | Secret | O que é | Como obter |
 |---|---|---|
-| `GOOGLE_SERVICES_JSON` | Conteúdo do `app/google-services.json` real, em base64 | `base64 -i app/google-services.json` |
 | `FIREBASE_APP_ID` | ID do app Android no Firebase (`1:XXXXXXXXXX:android:XXXX...`) | Firebase Console → Configurações do projeto → seus apps |
 | `FIREBASE_SERVICE_ACCOUNT` | JSON de uma service account com role de App Distribution Admin | Google Cloud Console → IAM & Admin → Service Accounts |
 

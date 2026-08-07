@@ -32,12 +32,6 @@ jobs:
           restore-keys: |
             gradle-${{ runner.os }}-
 
-      - name: Placeholder google-services.json
-        run: |
-          if [ ! -f app/google-services.json ]; then
-            echo '{"project_info":{"project_number":"000000000000","project_id":"ci-placeholder","storage_bucket":"ci-placeholder.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:000000000000:android:0000000000000000000000","android_client_info":{"package_name":"com.omie.desafio"}},"oauth_client":[],"api_key":[{"current_key":"PLACEHOLDER_API_KEY"}],"services":{"appinvite_service":{"other_platform_oauth_client":[]}}}],"configuration_version":"1"}' > app/google-services.json
-          fi
-
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
@@ -85,12 +79,6 @@ jobs:
           key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', 'gradle/wrapper/gradle-wrapper.properties') }}
           restore-keys: |
             gradle-${{ runner.os }}-
-
-      - name: Placeholder google-services.json
-        run: |
-          if [ ! -f app/google-services.json ]; then
-            echo '{"project_info":{"project_number":"000000000000","project_id":"ci-placeholder","storage_bucket":"ci-placeholder.appspot.com"},"client":[{"client_info":{"mobilesdk_app_id":"1:000000000000:android:0000000000000000000000","android_client_info":{"package_name":"com.omie.desafio"}},"oauth_client":[],"api_key":[{"current_key":"PLACEHOLDER_API_KEY"}],"services":{"appinvite_service":{"other_platform_oauth_client":[]}}}],"configuration_version":"1"}' > app/google-services.json
-          fi
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
