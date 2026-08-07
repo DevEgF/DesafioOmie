@@ -54,9 +54,6 @@ feature/
 - Android Studio (versão compatível com AGP definido em `gradle/libs.versions.toml`)
 - JDK 11+
 
-### Setup do Firebase
-O arquivo `app/google-services.json` precisa existir para o build funcionar (os plugins `google-services`/`crashlytics`/`perf` exigem). Baixe o arquivo real do seu projeto no [Firebase Console](https://console.firebase.google.com/) (Android app com `applicationId = com.omie.desafio`) e substitua o arquivo em `app/google-services.json`.
-
 ### Build e testes
 
 ```bash
